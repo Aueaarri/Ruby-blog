@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: "Aoom", password: "1234", except: [:index, :show]
+
   def index
     @articles = Article.all
   end
@@ -44,6 +46,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.expect(article: [:title, :body])
+      params.expect(article: [:title, :body, :status])
     end
+
 end
